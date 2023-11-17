@@ -1,0 +1,216 @@
+basePath: /api/v1
+definitions:
+  controller.LoginPayload:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.LoginPayloadToken:
+    properties:
+      refreshToken:
+        type: string
+    type: object
+  controller.Response:
+    properties:
+      data: {}
+      error:
+        type: string
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  model.AdvanceFilterPayload:
+    properties:
+      conditions:
+        additionalProperties: true
+        type: object
+      isPreload:
+        type: boolean
+      modelType:
+        type: string
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      stringPreLoad:
+        items:
+          type: string
+        type: array
+    type: object
+  model.BasicQueryPayload:
+    properties:
+      data: {}
+      modelType:
+        type: string
+      option:
+        $ref: '#/definitions/model.OPTION_QUERY'
+    type: object
+  model.OPTION_QUERY:
+    enum:
+    - insert
+    - update
+    - delete
+    type: string
+    x-enum-varnames:
+    - INSERT
+    - UPDATE
+    - DELETE
+  payload.CodeRegisterPayload:
+    properties:
+      code:
+        type: string
+      idTemporaryCredential:
+        type: integer
+    type: object
+  payload.InfoRegisterPayload:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:18888
+info:
+  contact: {}
+  description: account
+  title: account
+  version: "1.0"
+paths:
+  /access-protected/login-token:
+    post:
+      consumes:
+      - application/json
+      description: Login
+      parameters:
+      - description: payload
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/controller.LoginPayloadToken'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+      summary: Login
+      tags:
+      - Access
+  /access/login:
+    post:
+      consumes:
+      - application/json
+      description: Login
+      parameters:
+      - description: payload
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/controller.LoginPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+      summary: Login
+      tags:
+      - Access
+  /access/register/send-code:
+    post:
+      consumes:
+      - application/json
+      description: Register
+      parameters:
+      - description: payload
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/payload.CodeRegisterPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+      summary: Send Code Register
+      tags:
+      - Register
+  /access/register/send-info-register:
+    post:
+      consumes:
+      - application/json
+      description: Register
+      parameters:
+      - description: payload
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/payload.InfoRegisterPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+      summary: Send Info Register
+      tags:
+      - Register
+  /advance-filter/filter:
+    post:
+      consumes:
+      - application/json
+      description: Advance Filter
+      parameters:
+      - description: payload
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/model.AdvanceFilterPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+      summary: Advance Filter
+      tags:
+      - Advance Filter
+  /basic-query/query:
+    post:
+      consumes:
+      - application/json
+      description: Basic query
+      parameters:
+      - description: payload
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/model.BasicQueryPayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Response'
+      summary: Basic query
+      tags:
+      - Basic query
+swagger: "2.0"

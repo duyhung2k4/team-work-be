@@ -1,0 +1,3 @@
+package controller
+
+//https://{merchant-domain}/returnUrl?vnp_app_user_id=4&vnp_bank_code=NCB&vnp_bank_tran_no=20220328100858&vnp_card_number=970419xxxxxxxxx2198&vnp_card_type=01&vnp_command=token_create&vnp_pay_date=20220328100847&vnp_response_code=00&vnp_tmn_code=B9KOCLN0&vnp_token=100164843693860tJaGIVVVVVVVVVVhpKzNOi7SCTBlpTDWtTsV9km06FssVNH0P&vnp_transaction_no=13713726&vnp_transaction_status=00&vnp_txn_desc=Tao moi token&vnp_txn_ref=286&vnp_secure_hash={value}
